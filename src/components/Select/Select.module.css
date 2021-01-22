@@ -1,0 +1,72 @@
+.select {
+	background-color: #f2f2f2;
+	border: 1px solid #d6d1d1;
+	border-radius: 3px;
+
+	min-width: 200px;
+	display: inline-block;
+	position: relative;
+}
+
+.selection {
+	display: flex;
+	font-size: 16px;
+	position: relative;
+	z-index: 2;
+	cursor: pointer;
+	user-select: none;
+}
+
+.select.active .selection {
+	box-shadow: 0 -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.displayValue {
+	flex: 1 1 auto;
+	padding: 8px 10px;
+	padding: 8px 12px;
+}
+
+.dropdownIcon {
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	flex: 0 0 auto;
+	border-left: 1px solid #d9d3d3;
+}
+
+.options {
+	position: absolute;
+	width: 100%;
+	top: 100%;
+	border-left: 1px solid #979797;
+	border-right: 1px solid #979797;
+	border-bottom: 1px solid #979797;
+	z-index: 1;
+	box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+	display: none;
+}
+
+.select.active .options {
+	display: block;
+}
+
+.optionItem {
+	padding: 10px 15px;
+	background-color: #d9d9d9;
+	border-bottom: 1px solid #979797;
+}
+
+.optionItem:last-child {
+	border-bottom: none;
+}
+
+.optionItem:hover {
+	cursor: pointer;
+	background-color: #ece9e9;
+}
+
+.optionItem.active {
+	background-color: #c5c5c5;
+	cursor: default;
+}

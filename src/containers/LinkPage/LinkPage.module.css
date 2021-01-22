@@ -1,0 +1,18 @@
+.linkPage {
+	padding: 10px 0;
+}
+
+.toolbar {
+	padding: 15px;
+	border-bottom: 2px solid #ececec;
+	margin-bottom: 10px;
+}
+
+.filter {
+	margin-bottom: 10px;
+}
+
+.container {
+	padding-left: 10px;
+	padding-right: 10px;
+}

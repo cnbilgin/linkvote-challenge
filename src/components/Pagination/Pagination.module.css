@@ -1,0 +1,46 @@
+.pagination {
+	display: flex;
+	justify-content: center;
+}
+.pagination ul {
+	display: inline-flex;
+	padding: 0;
+	list-style: none;
+	position: relative;
+	padding: 0 50px;
+}
+
+.pagination ul li {
+	padding: 6px;
+	height: 30px;
+	min-width: 30px;
+	text-align: center;
+	border: 1px solid transparent;
+	margin: 0 3px;
+	font-weight: bold;
+	font-size: 16px;
+	line-height: 16px;
+	user-select: none;
+}
+.pagination ul li:hover {
+	border-color: #979797;
+	cursor: pointer;
+}
+
+.pagination ul li.active {
+	border-color: #000;
+}
+
+.pagination ul li.prevPage,
+.pagination ul li.nextPage {
+	position: absolute;
+	top: 0;
+}
+
+.pagination ul li.prevPage {
+	left: 0;
+}
+
+.pagination ul li.nextPage {
+	right: 0;
+}
