@@ -5,7 +5,6 @@ import Select from "../../components/Select/Select";
 import LinkList from "../../components/LinkList/LinkList";
 import Pagination from "../../components/Pagination/Pagination";
 import ConfirmationDialogBox from "../../components/ConfirmationDialogBox/ConfirmationDialogBox";
-import Toast from "../../components/Toast/Toast";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
@@ -17,6 +16,7 @@ import {
 	handleOrderLinks,
 } from "../../actions/links";
 import { orderTypes } from "../../utilities/order-types";
+import { showToast } from "../../actions/toasts";
 
 function LinkListContainer({ links }) {
 	const [dialog, setDialog] = useState({ show: false, link: null });
@@ -32,9 +32,19 @@ function LinkListContainer({ links }) {
 			}
 		);
 	};
-	const handleRemove = (id) => {
-		dispatch(handleRemoveLink(id)).then(() => {
+	const handleRemove = (link) => {
+		dispatch(handleRemoveLink(link.id)).then(() => {
 			setDialog({ show: false, link: null });
+			dispatch(
+				showToast({
+					type: "success",
+					body: (
+						<>
+							<strong>{link.name}</strong> removed.
+						</>
+					),
+				})
+			);
 		});
 	};
 	const handleRemoveConfirmation = (link) => {
@@ -70,49 +80,46 @@ function LinkListContainer({ links }) {
 	const paginationData = createPaginationData();
 
 	return (
-		<div className={classes.linkPage}>
-			<div className={`${classes.toolbar} ${classes.container}`}>
-				<Link to="/add">
-					<BigIconButton icon={<FaPlus />}>SUBMIT A LINK</BigIconButton>
-				</Link>
-			</div>
-			<div className={`${classes.filter} ${classes.container}`}>
-				<Select
-					options={orderOptions}
-					value={order}
-					onChange={handleSelectChange}
-					placeholder="Order by"
+		<>
+			<div className={classes.linkPage}>
+				<div className={`${classes.toolbar} ${classes.container}`}>
+					<Link to="/add">
+						<BigIconButton icon={<FaPlus />}>SUBMIT A LINK</BigIconButton>
+					</Link>
+				</div>
+				<div className={`${classes.filter} ${classes.container}`}>
+					<Select
+						options={orderOptions}
+						value={order}
+						onChange={handleSelectChange}
+						placeholder="Order by"
+					/>
+				</div>
+				<LinkList
+					links={paginationData.list}
+					onVote={handleVoting}
+					onRemove={handleRemoveConfirmation}
 				/>
+				{paginationData.totalPage > 1 ? (
+					<Pagination
+						totalPage={paginationData.totalPage}
+						page={page}
+						changePage={setPage}
+					/>
+				) : null}
 			</div>
-			<LinkList
-				links={paginationData.list}
-				onVote={handleVoting}
-				onRemove={handleRemoveConfirmation}
-			/>
-			{paginationData.totalPage > 1 ? (
-				<Pagination
-					totalPage={paginationData.totalPage}
-					page={page}
-					changePage={setPage}
-				/>
-			) : null}
-
 			{dialog.show ? (
 				<ConfirmationDialogBox
 					title="Remove Link"
 					show={dialog.show}
 					onClose={() => setDialog({ show: false, link: null })}
-					onConfirm={() => handleRemove(dialog.link.id)}
+					onConfirm={() => handleRemove(dialog.link)}
 				>
 					<p style={{ margin: 0 }}>Do you want to remove</p>
 					<h2 style={{ margin: 0 }}>{dialog.link.name}</h2>
 				</ConfirmationDialogBox>
 			) : null}
-
-			<Toast type="success">
-				<strong>REDDIT</strong> removed.
-			</Toast>
-		</div>
+		</>
 	);
 }
 

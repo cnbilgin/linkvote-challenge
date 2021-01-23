@@ -1,8 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { removeToast } from "../../actions/toasts";
 import classes from "./Toast.module.css";
 
-export default function Toast({ timer = 3000, type, children }) {
-	const [show, setShow] = useState(true);
+export default function Toast({ timer = 3000, type, children, id }) {
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		setTimeout(() => {
+			dispatch(removeToast(id));
+		}, timer);
+	}, [dispatch, id, timer]);
+
 	let toastClasses = [classes.toast];
 
 	switch (type) {
@@ -16,15 +25,5 @@ export default function Toast({ timer = 3000, type, children }) {
 			break;
 	}
 
-	useEffect(() => {
-		setTimeout(() => {
-			setShow(false);
-		}, timer);
-	}, [timer]);
-
-	return (
-		<div className={`${classes.wrapper} ${show ? classes.show : ""}`}>
-			<div className={toastClasses.join(" ")}>{children}</div>
-		</div>
-	);
+	return <div className={toastClasses.join(" ")}>{children}</div>;
 }
