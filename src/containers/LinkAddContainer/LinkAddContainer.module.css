@@ -1,0 +1,15 @@
+.linkAddContainer {
+	margin-top: 30px;
+}
+
+.returnLink {
+	display: flex;
+	align-items: center;
+}
+.returnLink svg {
+	margin-right: 10px;
+}
+
+.title {
+	margin-bottom: 50px;
+}

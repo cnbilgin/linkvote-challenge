@@ -1,0 +1,21 @@
+.formItem {
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+}
+
+.formItem label {
+	padding-left: 10px;
+	margin-bottom: 3px;
+}
+.formItem input {
+	padding: 10px;
+	border: 1px solid #8c8c8c;
+	border-radius: 5px;
+	font-size: 18px;
+}
+
+.buttons {
+	display: flex;
+	justify-content: flex-end;
+}
