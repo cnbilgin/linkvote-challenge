@@ -1,15 +1,11 @@
 import React from "react";
-import { FaPlus } from "react-icons/fa";
-
 import classes from "./BigIconButton.module.css";
 
-export default function BigIconButton({ className, ...props }) {
+export default function BigIconButton({ icon, children, className, ...props }) {
 	return (
 		<div className={[classes.bigIconButton, className].join(" ")} {...props}>
-			<div className={classes.icon}>
-				<FaPlus />
-			</div>
-			<div className={classes.text}>SUBMIT A LINK</div>
+			<div className={classes.icon}>{icon}</div>
+			<div className={classes.text}>{children}</div>
 		</div>
 	);
 }

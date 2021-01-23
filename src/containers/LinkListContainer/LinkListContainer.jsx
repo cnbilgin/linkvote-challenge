@@ -6,6 +6,7 @@ import LinkList from "../../components/LinkList/LinkList";
 import Pagination from "../../components/Pagination/Pagination";
 import ConfirmationDialogBox from "../../components/ConfirmationDialogBox/ConfirmationDialogBox";
 import Toast from "../../components/Toast/Toast";
+import { FaPlus } from "react-icons/fa";
 
 export default function LinkListContainer() {
 	const [page, setPage] = useState(2);
@@ -14,7 +15,7 @@ export default function LinkListContainer() {
 	return (
 		<div className={classes.linkPage}>
 			<div className={`${classes.toolbar} ${classes.container}`}>
-				<BigIconButton />
+				<BigIconButton icon={<FaPlus />}>SUBMIT A LINK</BigIconButton>
 			</div>
 			<div className={`${classes.filter} ${classes.container}`}>
 				<Select />
