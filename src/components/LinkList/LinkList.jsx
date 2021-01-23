@@ -1,31 +1,16 @@
 import React from "react";
 import LinkListItem from "./LinkListItem";
 
-export default function LinkList() {
-	const data = [
-		{
-			id: "asd",
-			points: 6,
-			title: "Hacker News",
-			link: "https://news.ycombinator.com/",
-		},
-		{
-			id: "asd1",
-			points: 4,
-			title: "Hacker News",
-			link: "https://news.ycombinator.com/",
-		},
-		{
-			id: "asd2",
-			points: 1,
-			title: "Hacker News",
-			link: "https://news.ycombinator.com/",
-		},
-	];
+export default function LinkList({ links, onVote, onRemove }) {
 	return (
 		<div>
-			{data.map((link) => (
-				<LinkListItem key={link.id} link={link} />
+			{links.map((link) => (
+				<LinkListItem
+					onVote={onVote}
+					key={link.id}
+					onRemove={onRemove}
+					link={link}
+				/>
 			))}
 		</div>
 	);

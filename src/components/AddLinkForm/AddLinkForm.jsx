@@ -2,14 +2,16 @@ import React, { useState } from "react";
 import classes from "./AddLinkForm.module.css";
 import Button from "../Button/Button";
 import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { handleAddLink } from "../../actions/links";
 
 export default function AddLinkForm() {
+	const dispatch = useDispatch();
+
 	const [data, setData] = useState({
 		name: "",
 		link: "",
 	});
-
-	const history = useHistory();
 
 	const handleOnChange = (e) => {
 		const name = e.target.name;
@@ -21,6 +23,7 @@ export default function AddLinkForm() {
 		setData(newData);
 	};
 
+	const history = useHistory();
 	const redirect = () => {
 		history.push("/");
 	};
@@ -40,7 +43,16 @@ export default function AddLinkForm() {
 			errMessage = "Please type a valid link";
 
 		if (errMessage) alert(errMessage);
-		else redirect();
+		else {
+			dispatch(
+				handleAddLink({
+					name,
+					link,
+				})
+			).then(() => {
+				redirect();
+			});
+		}
 	};
 
 	return (
