@@ -91,7 +91,10 @@ function vote(id, vote) {
 
 function _getStorage() {
 	let data = localStorage.getItem(STORAGE_KEY);
-	if (data == null) data = JSON.stringify(_initialData);
+	if (data == null) {
+		data = JSON.stringify(_initialData);
+		_saveStorage(_initialData);
+	}
 
 	return JSON.parse(data);
 }
