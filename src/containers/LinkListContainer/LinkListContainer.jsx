@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import classes from "./LinkPage.module.css";
+import classes from "./LinkListContainer.module.css";
 import BigIconButton from "../../components/BigIconButton/BigIconButton";
 import Select from "../../components/Select/Select";
 import LinkList from "../../components/LinkList/LinkList";
@@ -7,7 +7,7 @@ import Pagination from "../../components/Pagination/Pagination";
 import ConfirmationDialogBox from "../../components/ConfirmationDialogBox/ConfirmationDialogBox";
 import Toast from "../../components/Toast/Toast";
 
-export default function LinkPage() {
+export default function LinkListContainer() {
 	const [page, setPage] = useState(2);
 	const [showDialog, setShowDialog] = useState(false);
 
