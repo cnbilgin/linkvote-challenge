@@ -97,7 +97,7 @@ function _getStorage() {
 }
 
 function _saveStorage(data) {
-	localStorage.setItem(data, JSON.stringify(data));
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 function _formatDate(date) {
