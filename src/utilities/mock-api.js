@@ -66,12 +66,11 @@ function remove(id) {
 function add(link) {
 	return new Promise((resolve) => {
 		const data = _getStorage();
-		const newLink = { ...link, score: 0, id: uuidv4() };
+		const newLink = { ...link, points: 0, id: uuidv4() };
 
 		data.push(newLink);
 
 		_saveStorage(data);
-
 		resolve(newLink);
 	});
 }
