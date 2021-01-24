@@ -1,9 +1,10 @@
 .header {
 	display: flex;
 	padding: 10px 0;
-	margin-top: 20px;
+	margin: 20px auto 0 auto;
 	align-items: flex-end;
 	border-bottom: 1px solid #000;
+	width: min(100%, 100vw - 40px);
 }
 
 .logo {
@@ -29,6 +30,7 @@
 		flex-direction: column;
 		margin-top: 10px;
 		align-items: center;
+		width: 100%;
 	}
 
 	.title {
