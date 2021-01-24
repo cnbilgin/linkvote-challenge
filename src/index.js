@@ -1,15 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
 import App from "./containers/App/App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-
-import reducers from "./reducers";
-import middlewares from "./middlewares";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-
-const store = createStore(reducers, middlewares);
+import { store } from "./utilities/store";
 
 ReactDOM.render(
 	<React.StrictMode>
