@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { fireEvent, logRoles, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import LinkList from "./LinkList";
 
 export const linkData = [
