@@ -16,7 +16,10 @@ export default function Pagination({
 				<li
 					key={i}
 					className={i === page ? classes.active : null}
-					onClick={() => changePage(i)}
+					onClick={() => {
+						if (i !== page) changePage(i);
+					}}
+					aria-label={`page-${i}`}
 				>
 					{i}
 				</li>
@@ -29,6 +32,7 @@ export default function Pagination({
 			<ul>
 				{page !== 1 ? (
 					<li
+						aria-label="previous-page"
 						className={classes.prevPage}
 						onClick={() => changePage(page - 1)}
 					>
@@ -38,6 +42,7 @@ export default function Pagination({
 				{renderPages()}
 				{page !== totalPage ? (
 					<li
+						aria-label="next-page"
 						className={classes.nextPage}
 						onClick={() => changePage(page + 1)}
 					>
