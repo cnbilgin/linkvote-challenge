@@ -43,6 +43,7 @@ export default function AddLinkForm({ onSuccess, onError }) {
 			<div className={classes.formItem}>
 				<label>Link Name:</label>
 				<input
+					aria-label="name"
 					name="name"
 					type="text"
 					placeholder="e.g. Alphabet"
@@ -53,6 +54,7 @@ export default function AddLinkForm({ onSuccess, onError }) {
 			<div className={classes.formItem}>
 				<label>Link URL:</label>
 				<input
+					aria-label="link"
 					name="link"
 					type="text"
 					placeholder="e.g. http://abc.xyz"
@@ -61,7 +63,9 @@ export default function AddLinkForm({ onSuccess, onError }) {
 				/>
 			</div>
 			<div className={classes.buttons}>
-				<Button onClick={handleAdd}>ADD</Button>
+				<Button aria-label="submit" onClick={handleAdd}>
+					ADD
+				</Button>
 			</div>
 		</div>
 	);
