@@ -3,6 +3,7 @@ import { FaChevronDown } from "react-icons/fa";
 import classes from "./Select.module.css";
 
 export default function Select({ options, placeholder, value, onChange }) {
+	//TODO: close on click outside
 	const [show, setShow] = useState(false);
 	const text =
 		value != null ? options.find((p) => p.value === value).text : placeholder;
@@ -15,20 +16,25 @@ export default function Select({ options, placeholder, value, onChange }) {
 	};
 
 	const handleChange = (val) => {
+		setShow(false);
+		if (val === value) return;
 		const selectedOption = options.find((p) => p.value === val);
 		onChange(selectedOption);
-		setShow(false);
 	};
 
 	return (
 		<div className={classNames.join(" ")}>
-			<div className={classes.selection} onClick={handleSelectionClick}>
+			<div
+				className={classes.selection}
+				onClick={handleSelectionClick}
+				data-testid="selector"
+			>
 				<div className={classes.displayValue}>{text}</div>
 				<div className={classes.dropdownIcon}>
 					<FaChevronDown />
 				</div>
 			</div>
-			<div className={classes.options}>
+			<div className={classes.options} data-testid="options">
 				{options.map((option) => (
 					<div
 						key={option.value}
