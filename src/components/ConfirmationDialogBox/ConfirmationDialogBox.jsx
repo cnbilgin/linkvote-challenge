@@ -17,24 +17,40 @@ export default function ConfirmationDialogBox({
 		<div className={wrapperClasses.join(" ")}>
 			<div className={classes.dialog}>
 				<div className={classes.header}>
-					<div className={classes.title}>{title}</div>
-					<div className={classes.close} onClick={onClose}>
+					<h4 className={classes.title}>{title}</h4>
+					<button
+						aria-label="close"
+						className={classes.close}
+						onClick={onClose}
+					>
 						<FaTimes />
-					</div>
+					</button>
 				</div>
 				<div className={classes.cont}>
 					{children}
 					<div className={classes.options}>
-						<Button className={classes.button} onClick={onConfirm}>
+						<Button
+							aria-label="confirm"
+							className={classes.button}
+							onClick={onConfirm}
+						>
 							OK
 						</Button>
-						<Button className={classes.button} onClick={onClose}>
+						<Button
+							aria-label="cancel"
+							className={classes.button}
+							onClick={onClose}
+						>
 							CANCEL
 						</Button>
 					</div>
 				</div>
 			</div>
-			<div className={classes.backdrop} onClick={onClose}></div>
+			<div
+				data-testid="backdrop"
+				className={classes.backdrop}
+				onClick={onClose}
+			></div>
 		</div>
 	);
 }

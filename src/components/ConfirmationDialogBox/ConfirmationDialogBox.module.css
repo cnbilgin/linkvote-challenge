@@ -47,6 +47,7 @@
 .header .title {
 	font-size: 18px;
 	font-weight: bold;
+	margin: 0;
 }
 
 .header .close {
@@ -54,6 +55,9 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	border: none;
+	background-color: transparent;
+	color: inherit;
 }
 
 .dialog .cont {
