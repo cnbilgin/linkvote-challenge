@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import classes from "./AddLinkForm.module.css";
 import Button from "../Button/Button";
-// import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { handleAddLink } from "../../actions/links";
-import { showToast } from "../../actions/toasts";
 
-export default function AddLinkForm() {
-	const dispatch = useDispatch();
-
+export default function AddLinkForm({ onSuccess, onError }) {
 	const [data, setData] = useState({
 		name: "",
 		link: "",
@@ -24,11 +18,6 @@ export default function AddLinkForm() {
 		setData(newData);
 	};
 
-	// const history = useHistory();
-	// const redirect = () => {
-	// 	history.push("/");
-	// };
-
 	const handleAdd = () => {
 		let isValid = true;
 		const { name, link } = data;
@@ -43,26 +32,9 @@ export default function AddLinkForm() {
 		)
 			errMessage = "Please type a valid link";
 
-		if (errMessage) dispatch(showToast({ type: "error", body: errMessage }));
+		if (errMessage) onError(errMessage, data);
 		else {
-			dispatch(
-				handleAddLink({
-					name,
-					link,
-				})
-			).then(() => {
-				dispatch(
-					showToast({
-						type: "success",
-						body: (
-							<>
-								<strong>name</strong> added.
-							</>
-						),
-					})
-				);
-				// redirect();
-			});
+			onSuccess({ name, link });
 		}
 	};
 
