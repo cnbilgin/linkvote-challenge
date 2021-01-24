@@ -1,6 +1,6 @@
 import React from "react";
 import "@testing-library/jest-dom";
-import { fireEvent, logRoles, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import ConfirmationDialogBox from "./ConfirmationDialogBox";
 
 describe("ConfirmationDialogBox", () => {
@@ -19,8 +19,8 @@ describe("ConfirmationDialogBox", () => {
 		expect(
 			screen.getByRole("heading", {
 				name: "Title",
-			})
-		).toBeInTheDocument();
+			}).textContent
+		).toBe("Title");
 
 		expect(screen.getByText("Content")).toBeInTheDocument();
 	});
