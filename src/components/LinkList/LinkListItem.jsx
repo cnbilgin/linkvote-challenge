@@ -7,7 +7,7 @@ export default function LinkListItem({ link, onVote, onRemove }) {
 	return (
 		<div className={classes.linkListItem}>
 			<div className={classes.pointBox}>
-				<strong>{link.points}</strong>
+				<strong data-testid="point">{link.points}</strong>
 				POINT{Math.abs(link.points) > 1 ? "S" : ""}
 			</div>
 			<div className={classes.cont}>
@@ -18,23 +18,27 @@ export default function LinkListItem({ link, onVote, onRemove }) {
 					</a>
 				</div>
 				<div className={classes.voting}>
-					<div
+					<button
 						className={classes.voteItem}
 						onClick={() => onVote(link.id, true)}
 					>
 						<FaArrowUp className={classes.icon} />
 						<strong>Up Vote</strong>
-					</div>
-					<div
+					</button>
+					<button
 						className={classes.voteItem}
 						onClick={() => onVote(link.id, false)}
 					>
 						<FaArrowDown className={classes.icon} />
 						<strong>Down Vote</strong>
-					</div>
+					</button>
 				</div>
 			</div>
-			<div className={classes.remove} onClick={() => onRemove(link)}></div>
+			<button
+				className={classes.remove}
+				aria-label="Remove Link"
+				onClick={() => onRemove(link)}
+			/>
 		</div>
 	);
 }
