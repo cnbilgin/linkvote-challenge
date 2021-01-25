@@ -69,12 +69,15 @@ function LinkListContainer({ links }) {
 
 	const createPaginationData = () => {
 		const itemByPage = 5;
-		const start = (page - 1) * itemByPage;
-		const end = page * itemByPage;
+		const totalPage = Math.ceil(links.length / itemByPage);
+		let pageValue = page;
+		if (pageValue > totalPage) pageValue = totalPage;
+		const start = (pageValue - 1) * itemByPage;
+		const end = pageValue * itemByPage;
 
 		return {
 			list: links.slice(start, end),
-			totalPage: Math.ceil(links.length / itemByPage),
+			totalPage: totalPage,
 		};
 	};
 	const paginationData = createPaginationData();
