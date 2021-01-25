@@ -16,7 +16,7 @@
 	background-color: #ececec;
 	border: 1px solid #969696;
 	border-radius: 5px;
-	aspect-ratio: 1 / 1;
+	width: 90px;
 	height: 90px;
 
 	display: flex;
