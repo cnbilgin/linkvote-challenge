@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { removeToast } from "../../actions/toasts";
 import classes from "./Toast.module.css";
 
-export default function Toast({ timer = 3000, type, children, id }) {
-	const dispatch = useDispatch();
-
+export default function Toast({
+	timer = 3000,
+	type,
+	children,
+	id,
+	onRemove = null,
+}) {
 	useEffect(() => {
-		setTimeout(() => {
-			dispatch(removeToast(id));
-		}, timer);
-	}, [dispatch, id, timer]);
+		if (onRemove) {
+			const timeout = setTimeout(() => {
+				onRemove(id);
+			}, timer);
+
+			return () => {
+				clearTimeout(timeout);
+			};
+		}
+	}, [id, onRemove, timer]);
 
 	let toastClasses = [classes.toast];
 
