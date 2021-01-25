@@ -33,5 +33,9 @@ export default function Toast({
 			break;
 	}
 
-	return <div className={toastClasses.join(" ")}>{children}</div>;
+	return (
+		<div aria-label="toast" className={toastClasses.join(" ")}>
+			{children}
+		</div>
+	);
 }
