@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FaChevronDown } from "react-icons/fa";
+import useOutsideClick from "../../utilities/useOutsideClick";
 import classes from "./Select.module.css";
 
 export default function Select({ options, placeholder, value, onChange }) {
-	//TODO: close on click outside
 	const [show, setShow] = useState(false);
+	const ref = useRef();
+
+	useOutsideClick(ref, () => {
+		if (show) setShow(false);
+	});
+
 	const text =
 		value != null ? options.find((p) => p.value === value).text : placeholder;
 
@@ -34,7 +40,7 @@ export default function Select({ options, placeholder, value, onChange }) {
 					<FaChevronDown />
 				</div>
 			</div>
-			<div className={classes.options} data-testid="options">
+			<div ref={ref} className={classes.options} data-testid="options">
 				{options.map((option) => (
 					<div
 						key={option.value}
